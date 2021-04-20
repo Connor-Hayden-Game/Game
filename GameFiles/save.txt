@@ -1,0 +1,22 @@
+TestUser
+4
+10
+10
+10
+0
+20
+armor
+1
+fire
+stock armor
+sword
+1
+fire
+stock sword
+amulet
+1
+fire
+stock amulet
+1
+1
+1
