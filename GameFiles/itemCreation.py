@@ -1,6 +1,6 @@
 #Creating Items
 import random 
-import heroUpdate as h
+#import heroUpdate as h
 # import heroCreation
 
 
@@ -28,15 +28,16 @@ def random_item(hero):
 
 class Inventory(object):
     
-    item_slot1              = ""
-    item_slot2              = ""
-    item_slot3              = ""
-    item_slot4              = ""
-    item_slot5              = ""
-    item_slot6              = ""
-    item_slot7              = ""
-    item_slot8              = ""
-    item_slot9              = ""
-    item_slot10             = ""
+    item_slot1              = ''
+    item_slot2              = ''
+    item_slot3              = ''
+    item_slot4              = ''
+    item_slot5              = ''
+    item_slot6              = ''
+    item_slot7              = ''
+    item_slot8              = ''
+    item_slot9              = ''
+    item_slot10             = ''
     slots                   = [item_slot1, item_slot2, item_slot3, item_slot4, item_slot5, item_slot6, item_slot7, item_slot8, item_slot9, item_slot10]
+
 

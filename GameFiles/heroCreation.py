@@ -17,7 +17,7 @@ class Character(object):
     experience          = 1
     player_level        = 1
     floor_level         = 1
-    #inventory           = []
+#    inventory           = []
 
 
 

@@ -1,14 +1,14 @@
 jeremia
-139
+49
 0
 11
 1
 0
 20
 armor
-100
+10
 fire
-level 100 armor of fire
+level 10 armor of fire
 bow
 10
 fire
