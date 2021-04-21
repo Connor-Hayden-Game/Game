@@ -1,5 +1,5 @@
 #hero updating
-
+import itemCreation as ic
 
 
 def save(hero):
@@ -30,39 +30,43 @@ def save(hero):
         "\n" + str(hero.floor_level) + "\n" )#+ str(hero.inventory))
     save.close()
 
+def save_inv(inventory):
 
-def load(hero):
-    f = open("save.txt", "r")
-    hero.name                = f.readline()
-    hero.health              = f.readline()
-    hero.melee               = f.readline()
-    hero.ranged              = f.readline()
-    hero.magic               = f.readline()
-    hero.points              = f.readline()
-    hero.bank                = f.readline()
-    hero.armor               = f.readline()
-    hero.weapon              = f.readline()
-    hero.amulet              = f.readline()
-    hero.experience          = f.readline()
-    hero.player_level        = f.readline()
-    hero.floor_level         = f.readline()
-    '''hero.inventory           = f.readline()'''
-    f.close()
+    item_slot1              = inventory.item_slot1
+    item_slot2              = inventory.item_slot2
+    item_slot3              = inventory.item_slot3
+    item_slot4              = inventory.item_slot4
+    item_slot5              = inventory.item_slot5
+    item_slot6              = inventory.item_slot6
+    item_slot7              = inventory.item_slot7
+    item_slot8              = inventory.item_slot8
+    item_slot9              = inventory.item_slot9
+    item_slot10             = inventory.item_slot10
+    slots                   = [item_slot1, item_slot2, item_slot3, item_slot4, item_slot5, item_slot6, item_slot7, item_slot8, item_slot9, item_slot10]
 
-'''
-def addToInv(item, hero):
-    hero.inventory.append(item)
-    save(hero)
-'''
-def equipToSlot(item, hero):
+    inv_save = open("inventory.txt", "w")
+    inv_save.write(str(inventory.slots))
+    inv_save.close()
+
+
+def updateInv(inventory,item, num, inv_slot, hero):
+
+    #num is choice of adding [0]/droping [1]
+    if num == 0: #adding
+        inventory.slots[inv_slot] = item.name
+    elif num == 1: #drop
+        inventory.slots[inv_slot] = ""
+    save_inv(inventory)
+
+
+def equipToSlot(inventory, item, hero, inv_slot):
     if(item.item_type == "armor"):
         olditem = hero.armor
         hero.health -= int(hero.armor.item_level)
         hero.armor = item
-        #hero.inventory.remove(item)
-        #hero.inventory.append(olditem)
         (hero.health) += item.item_level
-        #save(hero)
+        updateInv(olditem, 0, inv_slot, hero)
+        
     
     elif(item.item_type == "sword" or item.item_type == "bow" or item.item_type == "staff"):
         olditem = hero.weapon
@@ -73,24 +77,65 @@ def equipToSlot(item, hero):
         if(olditem.item_type == "staff"):
             hero.magic -= int(hero.weapon.item_level)
         hero.weapon = item
-        #hero.inventory.remove(item)
-        #hero.inventory.append(olditem)
         if(item.item_type == "sword"):
             hero.melee += item.item_level
         if(item.item_type == "bow"):
             hero.ranged += item.item_level
         if(item.item_type == "staff"):
             hero.magic +=  item.item_level
-        #save(hero)
+        updateInv(olditem, 0, inv_slot, hero)
+        
         
     elif(item.item_type == "amulet"):
         olditem = hero.amulet
         hero.health -= int(hero.amulet.item_level)
         hero.amulet = item
-        #hero.inventory.remove(item)
-        #hero.inventory.append(olditem)
         (hero.health) += item.item_level
-    save(hero)
+        updateInv(olditem, 0, inv_slot, hero)
+    h.save(hero)
+    h.save_inv(inventory)
+
+def viewInv(inventory):
+    for slot in inventory.slots:
+        print(slot + '\n')
+
+# def equipToSlot(item, hero):
+#     if(item.item_type == "armor"):
+#         olditem = hero.armor
+#         hero.health -= int(hero.armor.item_level)
+#         hero.armor = item
+#         #hero.inventory.remove(item)
+#         #hero.inventory.append(olditem)
+#         (hero.health) += item.item_level
+#         #save(hero)
+    
+#     elif(item.item_type == "sword" or item.item_type == "bow" or item.item_type == "staff"):
+#         olditem = hero.weapon
+#         if(olditem.item_type == "sword"):
+#             hero.melee -= int(hero.weapon.item_level)
+#         if(olditem.item_type == "bow"):
+#             hero.ranged -= int(hero.weapon.item_level)
+#         if(olditem.item_type == "staff"):
+#             hero.magic -= int(hero.weapon.item_level)
+#         hero.weapon = item
+#         #hero.inventory.remove(item)
+#         #hero.inventory.append(olditem)
+#         if(item.item_type == "sword"):
+#             hero.melee += item.item_level
+#         if(item.item_type == "bow"):
+#             hero.ranged += item.item_level
+#         if(item.item_type == "staff"):
+#             hero.magic +=  item.item_level
+#         #save(hero)
+        
+#     elif(item.item_type == "amulet"):
+#         olditem = hero.amulet
+#         hero.health -= int(hero.amulet.item_level)
+#         hero.amulet = item
+#         #hero.inventory.remove(item)
+#         #hero.inventory.append(olditem)
+#         (hero.health) += item.item_level
+#     save(hero)
     
 
 

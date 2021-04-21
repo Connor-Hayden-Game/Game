@@ -24,9 +24,16 @@ class Hero(object):
 
 
 hero_obj = Hero()
+hero_inv = ic.Inventory()
+
+
+hu.updateInv(hero_inv, ic.random_item(hero_obj), 0, 3, hero_obj)
+#hu.save_inv(hero_inv)
+
 
 #hu.addToInv(ic.random_item(hero_obj), hero_obj)
-hu.equipToSlot(ic.random_item(hero_obj), hero_obj)
+#hu.equipToSlot(ic.random_item(hero_obj), hero_obj)
+
 
 
 

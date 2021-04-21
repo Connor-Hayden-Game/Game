@@ -1,22 +1,22 @@
-TestUser
-4
-10
-10
-10
+jeremia
+139
+0
+11
+1
 0
 20
 armor
-1
+100
 fire
-stock armor
-sword
-1
+level 100 armor of fire
+bow
+10
 fire
-stock sword
+level 10 bow of fire
 amulet
+10
+water
+level 10 amulet of water
 1
-fire
-stock amulet
-1
-1
-1
+10
+10
