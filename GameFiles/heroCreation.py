@@ -11,16 +11,13 @@ class Character(object):
     points              = 30
 
     bank                = 20
-    armor               = itemCreation.Item("armor", 1, "fire", "stock armor")
-    weapon              = itemCreation.Item("sword", 1, "fire", "stock sword")
-    amulet              = itemCreation.Item("amulet", 1, "fire", "stock amulet")
+    armor               = itemCreation.Item("armor", 1, "fire", "level 1 armor of fire")
+    weapon              = itemCreation.Item("sword", 1, "fire", "level 1 sword of fire")
+    amulet              = itemCreation.Item("amulet", 1, "fire", "level 1 amulet of fire")
     experience          = 1
     player_level        = 1
     floor_level         = 1
-#    inventory           = []
-
-
-
+    player_class		= 'Brute'
 
 
 
@@ -85,12 +82,7 @@ if __name__ == "__main__":
 
 
     heroUpdate.save(CHAR)
-    # save = open("save.txt", "w")
-    # save.write("name: " + str(CHAR.name) + "\nhealth: " + str(CHAR.health) + "\nmelee: " + str(CHAR.melee)+ \
-    #   "\nranged: " + str(CHAR.ranged) + "\nmagic: " + str(CHAR.magic)+ "\npoints: " + str(CHAR.points) + \
-    #   "\nbank: " + str(CHAR.bank) + "\narmor: " + str(CHAR.armor) + "\nweapon: " + str(CHAR.weapon) +  \
-    #   "\namulet: " + str(CHAR.amulet) + "\nexperience: " + str(CHAR.experience) + "\ninventory: " + str(CHAR.inventory))
-    # save.close()
+
 
 
 
