@@ -20,7 +20,6 @@ def save(hero):
     player_level= hero.player_level
     floor_level = hero.floor_level
     player_class= hero.player_class
-    #inventory	= hero.inventory
 
     save = open("save.txt", "w")
     save.write(str(hero.name) + \

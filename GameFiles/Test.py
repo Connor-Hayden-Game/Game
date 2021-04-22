@@ -3,7 +3,8 @@ import heroCreation as hc
 import heroUpdate as hu
 import itemCreation as ic
 import random
-
+from mobs import Monster
+import combat
 
 
 class Hero(object):
@@ -38,12 +39,24 @@ class Inv(object):
     slots                   = [item_slot1, item_slot2, item_slot3, item_slot4, item_slot5, item_slot6, item_slot7, item_slot8, item_slot9, item_slot10]
 
 
+
+mob_list           = ["Brute", "Archer", " Warlock"]
+elements_list      = ["fire", "water", "earth"]
+
+
+
 hero_obj = Hero()
 hero_inv = Inv()
+mob = Monster(hero_obj.floor_level, random.choice(mob_list), random.choice(elements_list))
 #hu.viewInv(hero_inv)
 
 
+
+
+
 ########################################################### Different Test Cases ########################################################################
+
+print(combat.damageDone(hero_obj, mob)) 
 
 #hu.updateInv(hero_inv, ic.random_item(hero_obj), 0, 0, hero_obj)
 #hu.equipToSlot(hero_inv, hero_obj, 0)

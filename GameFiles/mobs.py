@@ -1,33 +1,27 @@
 #Making Monsters to fight
 
 import random
-import item_creation
+import itemCreation as ic
 
 
-class monster(floor_level, hero):
 
-	mob_list      = ["Brute", "Archer", " Warlock"]
-	elements_list = ["fire", "water", "ice"]
-	lvl = floor_level
+class Monster(object):
 
-    element       = random.choice(elements_list)                        #elements can be changed
-    mob_type      = random.choice(mob_list)								
-    health        = floor_level * 2
-    experience    = floor_level
-    damage		  = floor_level
-    item_drop     = random_item(hero)
+    def __init__(self, level, mob_class, element):
+        self.level         = level
+        self.mob_class     = mob_class
+        self.element       = element                                              
+        self.health        = self.level * 2
+        experience         = self.level
+        item_drop          = ic.random_item(self)
 
 
-class boss(floor_level, hero):
+class boss(object):
 
-    mob_list      = ["Brute", "Archer", " Warlock"]
-    elements_list = ["fire", "water", "ice"]
-	lvl = floor_level
-
-
-    element       = random.choice(elements_list)                        #elements can be changed
-    mob_type      = random.choice(mob_list)                             
-    health        = floor_level * 3
-    experience    = floor_level * 2
-    damage        = floor_level * 1.5
-    item_drop     = random_item(hero)
+    def __init__(self, level, mob_class, element):
+        self.level         = level
+        self.mob_class     = mob_class
+        self.element       = element                                              
+        self.health        = self.level * 3
+        experience         = self.level *1.5
+        item_drop          = ic.random_item(self)
