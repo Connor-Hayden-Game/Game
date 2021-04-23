@@ -73,7 +73,7 @@ def damageDone(hero, monster):
 	damage_multiplier = 1 + elementMultiplier + typeMultiplier
 
 	if(hero.player_class == 'Brute'):
-		dmg = hero.melee  * damage_multiplier
+		dmg = hero.melee  * damage_multiplier 
 	elif(hero.player_class == 'Archer'):
 		dmg = hero.ranged  * damage_multiplier	
 	elif(hero.player_class == 'Warlock'):

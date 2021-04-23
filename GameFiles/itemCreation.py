@@ -15,7 +15,7 @@ class Item(object):
 def random_item(hero):
 
     item_types = ["armor", "sword", "bow", "staff", "amulet"]
-    element_list = ["fire", "water", "earth"]
+    element_list = ["fire" , "water", "earth"]
     item_level = hero.floor_level
     item_type = random.choice(item_types)
     item_element =  random.choice(element_list)

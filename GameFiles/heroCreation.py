@@ -17,8 +17,7 @@ class Character(object):
     experience          = 1
     player_level        = 1
     floor_level         = 1
-    player_class		= 'Brute'
-
+    
 
 
     _attributes = ['name', 'health', 'melee', 'ranged', 'magic', 'points']

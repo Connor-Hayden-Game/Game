@@ -55,7 +55,7 @@ mob = Monster(hero_obj.floor_level, random.choice(mob_list), random.choice(eleme
 
 
 ########################################################### Different Test Cases ########################################################################
-
+print(mob.health)
 print(combat.damageDone(hero_obj, mob)) 
 
 #hu.updateInv(hero_inv, ic.random_item(hero_obj), 0, 0, hero_obj)
