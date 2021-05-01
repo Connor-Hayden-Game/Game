@@ -69,10 +69,10 @@ counter=0
 
 
 ############# First combat Test
-print(mob.health)
-print(mob.element)
-print(mob.mob_class)
-print(combat.damageDone(hero_obj, mob)) 
+# print(mob.health)
+# print(mob.element)
+# print(mob.mob_class)
+# print(combat.damageDone(hero_obj, mob)) 
 
 ############ Inv updates
 #hu.updateInv(hero_inv, ic.random_item(hero_obj), 0, 0, hero_obj)
