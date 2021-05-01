@@ -11,7 +11,7 @@ class Monster(object):
         self.level         = level
         self.mob_class     = mob_class
         self.element       = element                                              
-        self.health        = self.level * 2
+        self.health        = self.level * 2 #place holder number
         # experience         = self.level
         # item_drop          = ic.random_item(level)
 
@@ -22,6 +22,6 @@ class Boss(object):
         self.level         = level
         self.mob_class     = mob_class
         self.element       = element                                              
-        self.health        = self.level * 3
+        self.health        = self.level * 3 #place holder number
         # experience         = self.level *1.5
         # item_drop          = ic.random_item(self)

@@ -49,15 +49,32 @@ hero_obj = Hero()
 hero_inv = Inv()
 mob = Monster(hero_obj.floor_level, random.choice(mob_list), random.choice(elements_list))
 #hu.viewInv(hero_inv)
-
-
+item = ic.random_item(hero_obj)
+counter=0
 
 
 
 ########################################################### Different Test Cases ########################################################################
+
+
+############# Testing eternal
+# while(True):
+#     if(item.item_element != 'eternal'):
+#         item = ic.random_item(hero_obj)
+#         counter +=1
+#         print(counter)
+#     else:
+#         print(item.name)
+#         break
+
+
+############# First combat Test
 print(mob.health)
+print(mob.element)
+print(mob.mob_class)
 print(combat.damageDone(hero_obj, mob)) 
 
+############ Inv updates
 #hu.updateInv(hero_inv, ic.random_item(hero_obj), 0, 0, hero_obj)
 #hu.equipToSlot(hero_inv, hero_obj, 0)
 #hu.addToInv(ic.random_item(hero_obj), hero_obj)

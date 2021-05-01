@@ -2,7 +2,7 @@
 import random 
 #import heroUpdate as h
 # import heroCreation
-
+from itertools import repeat
 
 
 class Item(object):
@@ -15,7 +15,11 @@ class Item(object):
 def random_item(hero):
 
     item_types = ["armor", "sword", "bow", "staff", "amulet"]
-    element_list = ["fire" , "water", "earth"]
+    element_list = ["fire", "water", "earth", "eternal"] 
+    element_list.extend(repeat("fire", 100))
+    element_list.extend(repeat("earth", 100))
+    element_list.extend(repeat("water", 100))
+    # element_list.extend(repeat("eternal", int(hero.player_level)))
     item_level = hero.floor_level
     item_type = random.choice(item_types)
     item_element =  random.choice(element_list)
