@@ -1,16 +1,18 @@
 from tkinter import *
 from win_settings import *
 
+# Matura MT Script Capitals
+
 # creates canvas
 canvas = Canvas(window, width=800, height=600, bg="black")
 canvas.pack(fill="both", expand=True)
 
 # displays the main menu
 def display_menu():
-    window.title("Game Title")
+    window.title("CR")
 
     # add label to canvas
-    canvas.create_text(400, 30, text="WELCOME", font=("Helvetica", 25), fill="blue")
+    canvas.create_text(400, 200, text="Castle Reign", font=("Matura MT Script Capitals", 75), fill="#1A5A14")
 
     # add buttons to canvas
     play_button = Button(window, text="Play Now", command=play_now)
@@ -23,9 +25,9 @@ def display_menu():
 def play_now():
     canvas.delete('all')
 
-    canvas.configure(bg='white')
+    canvas.configure(bg='#DDE7EC')
 
-    canvas.create_text(400, 30, text="TIME TO PLAY", font=("Helvetica", 25), fill="blue")
+    canvas.create_text(400, 250, text="TIME TO PLAY", font=("Candara", 25), fill="blue")
 
 # function to close the window
 def close_window():

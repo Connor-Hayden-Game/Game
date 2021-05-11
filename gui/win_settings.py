@@ -1,11 +1,11 @@
 from tkinter import *
-from PIL import ImageTk, Image
+# from PIL import ImageTk, Image
 
 window = Tk()
 
 
 # creating an icon for window
-window.iconbitmap(r"gui\img\my_icon.ico")
+window.iconbitmap(r"img\my_icon.ico")
 
 # configs of window
 win_width = 800
