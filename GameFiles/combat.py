@@ -45,7 +45,7 @@ def damageDone(hero, monster):
             damage_multiplier += 0.0
     #print(damage_multiplier)
     if(playerElementType == 'eternal'):
-        damage_multiplier += 0.5        
+        damage_multiplier += 0.5
     elif(playerElementType == 'fire'):
         if(mobElementType == 'fire'):
             damage_multiplier += 0.0
@@ -69,9 +69,9 @@ def damageDone(hero, monster):
             damage_multiplier += 0.0
     #print(damage_multiplier)
     if(hero.player_class == 'Brute'):
-        dmg = hero.melee  * damage_multiplier 
+        dmg = hero.melee  * damage_multiplier
     elif(hero.player_class == 'Archer'):
-        dmg = hero.ranged  * damage_multiplier  
+        dmg = hero.ranged  * damage_multiplier
     elif(hero.player_class == 'Warlock'):
         dmg = hero.magic  * damage_multiplier
 
@@ -120,7 +120,7 @@ def damageReceived(hero, monster):
             damage_multiplier += 0.0
     #print(damage_multiplier)
     if(mobElementType == 'eternal'):
-        damage_multiplier += 0.5        
+        damage_multiplier += 0.5
     elif(mobElementType == 'fire'):
         if(playerElementType == 'fire'):
             damage_multiplier += 0.0
@@ -144,7 +144,7 @@ def damageReceived(hero, monster):
             damage_multiplier += 0.0
     #print(damage_multiplier)
     dmg = monster.level * damage_multiplier
-    
+
 
     return round(dmg, 2)
 
@@ -189,6 +189,3 @@ def combatSequence(hero, monster):
             elif CHOICE == "Run Away":
                 print('You fled to safety.')
                 running = False
-
-
-
