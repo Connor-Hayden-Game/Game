@@ -47,7 +47,8 @@ elements_list      = ["fire", "water", "earth"]
 
 hero_obj = Hero()
 hero_inv = Inv()
-mob = Monster(hero_obj.floor_level, random.choice(mob_list), random.choice(elements_list))
+#mob = Monster(hero_obj.floor_level, random.choice(mob_list), random.choice(elements_list))
+mob = Monster(10, random.choice(mob_list), random.choice(elements_list))
 #hu.viewInv(hero_inv)
 item = ic.random_item(hero_obj)
 
@@ -76,10 +77,14 @@ item = ic.random_item(hero_obj)
 # print(combat.damageDone(hero_obj, mob)) 
 
 ############# Second combat Test
-print(mob.health)
-print(mob.element)
-print(mob.mob_class)
-print(combat.damageReceived(hero_obj, mob)) 
+# print(mob.health)
+# print(mob.element)
+# print(mob.mob_class)
+# print(combat.damageReceived(hero_obj, mob)) 
+
+############# Combat Sequence Test
+combat.combatSequence(hero_obj, mob)
+
 
 ############ Inv updates
 #hu.updateInv(hero_inv, ic.random_item(hero_obj), 0, 0, hero_obj)
