@@ -1,3 +1,7 @@
+#
+# FOR REFERENCE FOR SOME CANVAS INTERFACE LINES. TO BE DELETED LATER
+#
+
 from tkinter import *
 from win_settings import *
 # import time

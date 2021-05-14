@@ -3,7 +3,6 @@ from tkinter import *
 
 window = Tk()
 
-
 # creating an icon for window
 window.iconbitmap(r"img\my_icon.ico")
 

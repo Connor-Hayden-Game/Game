@@ -6,7 +6,6 @@ import random
 from mobs import Monster
 import combat
 
-
 class Hero(object):
     f = open('save.txt','r').read().splitlines()
     name                = f[0]
@@ -48,7 +47,7 @@ elements_list      = ["fire", "water", "earth"]
 hero_obj = Hero()
 hero_inv = Inv()
 #mob = Monster(hero_obj.floor_level, random.choice(mob_list), random.choice(elements_list))
-mob = Monster(10, random.choice(mob_list), random.choice(elements_list))
+mob = Monster(hero_obj.floor_level, random.choice(mob_list), random.choice(elements_list))
 #hu.viewInv(hero_inv)
 item = ic.random_item(hero_obj)
 
@@ -92,6 +91,8 @@ combat.combatSequence(hero_obj, mob)
 #hu.addToInv(ic.random_item(hero_obj), hero_obj)
 #hu.equipToSlot(ic.random_item(hero_obj), hero_obj)
 
+########### EXP Tests
+# hu.increaseXP(220, hero_obj)
 
 
 

@@ -4,11 +4,11 @@ ConnorTest2
 1
 1
 0
-20
-level 1 armor of water
+4
+level 1 armor of fire
 level 1 sword of fire
 level 1 amulet of earth
-1
-1
+22
+7
 1
 Brute

@@ -129,9 +129,11 @@ def playerClass(weapon):
 
 def increaseXP(amount, hero):
     hero.experience += amount
-    if(hero.experience >= 10):
+    tmp = hero.experience
+    if(hero.experience >= (200+(hero.player_level ** 2))):
+        hero.experience = 0 + (tmp - (200+(hero.player_level ** 2)))
         hero.player_level += 1
-        print("You have leveled up! You are now level: " + hero.player_level)
+        print("You have leveled up! You are now level: ", hero.player_level)
     save(hero)
 
 

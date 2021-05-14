@@ -1,6 +1,6 @@
 import mobs
 import heroUpdate as hu
-
+import random
 
 
 
@@ -183,7 +183,11 @@ def combatSequence(hero, monster):
                     print('The '+ str(monster.mob_class) + ' did ' + str(dmgReceived) + ' damage.\n')
                     currHealth -= dmgReceived
                 elif(monster.health <= 0):
+                    hu.increaseXP(monster.level+100,hero)
+                    gold = random.randint(0,monster.level)
+                    hu.addGold(gold, hero)
                     print('The monster has died.\n')
+                    print('You gained', monster.level+100, 'experience and', gold, 'gold.\n')
                     running = False
 
             elif CHOICE == "Run Away":
