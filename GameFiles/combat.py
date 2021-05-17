@@ -177,8 +177,8 @@ def combatSequence(hero, monster):
             if CHOICE == "Attack":
                 currAttack = damageDone(hero, monster)
                 print('You did '+ str(currAttack) + 'damage.\n')
-                monster.health -= currAttack
-                if(monster.health >= 0):
+                monster.health -= float(currAttack)
+                if(monster.health > 0):
                     dmgReceived = damageReceived(hero, monster)
                     print('The '+ str(monster.mob_class) + ' did ' + str(dmgReceived) + ' damage.\n')
                     currHealth -= dmgReceived
