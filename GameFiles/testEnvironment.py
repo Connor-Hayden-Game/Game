@@ -56,7 +56,8 @@ def createDrops():
         if(elementClicked.get() == "Eternal"):
             tkinter.messagebox.showinfo("Ah, shucks!", "It looks like you will need to discover the Eternal element before using it to make weapons! Choose a new element.")
         else:
-            submitLabel = Label(canvas, text="You equip a " + weaponClicked.get() + " of " + elementClicked.get())
+            submitLabel = Label(canvas, text="level 1 " + weaponClicked.get().lower() + " of " + elementClicked.get().lower())
+            submitLabel.lower()
             canvas.create_window(150, 150, window=submitLabel, anchor='w')
 
     submitWeapon = Button(window, text="Submit", command=showWeapon)
