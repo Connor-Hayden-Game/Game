@@ -164,8 +164,8 @@ def combatSequence(hero, monster):
             print('You have been badly injured are being rushed to the infirmary.')
             running = False
         else:
-            print('You have '+ str(currHealth) + ' health.')
-            print('Enemy has '+ str(monster.health) + ' health.')
+            print('You have '+ str(round(currHealth, 2)) + ' health.')
+            print('Enemy has '+ str(round(monster.health, 2)) + ' health.')
             CHOICE = input(PROMPT)
             print("--------------------------------------------------------")
             try:
@@ -176,7 +176,7 @@ def combatSequence(hero, monster):
                 CHOICE = OPTIONS_DICT[CHOICE]
             if CHOICE == "Attack":
                 currAttack = damageDone(hero, monster)
-                print('You did '+ str(currAttack) + 'damage.\n')
+                print('You did '+ str(currAttack) + ' damage.\n')
                 monster.health -= float(currAttack)
                 if(monster.health > 0):
                     dmgReceived = damageReceived(hero, monster)
@@ -187,7 +187,7 @@ def combatSequence(hero, monster):
                     gold = random.randint(0,monster.level)
                     hu.addGold(gold, hero)
                     print('The monster has died.\n')
-                    print('You gained', monster.level+100, 'experience and', gold, 'gold.\n')
+                    print('You gained', monster.level, 'experience and', gold, 'gold.\n')
                     running = False
 
             elif CHOICE == "Run Away":

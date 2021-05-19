@@ -103,7 +103,7 @@ def main():
 
     running = True
     print ("What would you like to do?")
-    OPTIONS_LIST = ["See Hero Attributes", "Change floor level", "Fight Mobs", "Merchant", "Coin Flip",  "Exit"]
+    OPTIONS_LIST = ["See Hero Attributes", "Add Points", "Change floor level", "Fight Mobs", "Merchant", "Coin Flip",  "Exit"]
     OPTIONS_DICT = dict(enumerate(OPTIONS_LIST, start=1))
     PROMPT = "\n".join("\t%d. %s"%n for n in OPTIONS_DICT.items())+"\nChoice:"
     while (running):
@@ -116,19 +116,22 @@ def main():
             CHOICE = OPTIONS_DICT[CHOICE]
         if CHOICE == "See Hero Attributes":
             print( \
-                "Name    : " + str(hero_obj.name)         + "\n" \
-                "Health  : " + str(hero_obj.health)       + "\n" \
-                "Melee   : " + str(hero_obj.melee)        + "\n" \
-                "Ranged  : " + str(hero_obj.ranged)       + "\n" \
-                "Magic   : " + str(hero_obj.magic)        + "\n" \
-                "Money   : " + str(hero_obj.bank)         + "\n" \
-                "Exp     : " + str(hero_obj.experience)   + "\n" \
-                "Level   : " + str(hero_obj.player_level) + "\n" \
-                "Floor   : " + str(hero_obj.floor_level)  + "\n" \
-                "Weapon  : " + str(hero_obj.weapon.name)  + "\n" \
-                "Armor   : " + str(hero_obj.armor.name)   + "\n" \
-                "Amulet  : " + str(hero_obj.amulet.name)  + "\n" 
+                "Name    : " + str(hero_obj.name)                                                              + "\n" \
+                "Health  : " + str(hero_obj.health)                                                            + "\n" \
+                "Melee   : " + str(hero_obj.melee)                                                             + "\n" \
+                "Ranged  : " + str(hero_obj.ranged)                                                            + "\n" \
+                "Magic   : " + str(hero_obj.magic)                                                             + "\n" \
+                "Points  : " + str(hero_obj.points)                                                            + "\n" \
+                "Money   : " + str(hero_obj.bank)                                                              + "\n" \
+                "Exp     : " + str(hero_obj.experience)   + "/" + str(float(10+(hero_obj.player_level ** 2))) + "\n" \
+                "Level   : " + str(hero_obj.player_level)                                                      + "\n" \
+                "Floor   : " + str(hero_obj.floor_level)                                                       + "\n" \
+                "Weapon  : " + str(hero_obj.weapon.name)                                                       + "\n" \
+                "Armor   : " + str(hero_obj.armor.name)                                                        + "\n" \
+                "Amulet  : " + str(hero_obj.amulet.name)                                                       + "\n" 
              )
+        elif CHOICE == "Add Points":
+            hu.add_points(hero_obj)
         elif CHOICE == "Change floor level":
             tmp_level = input("What level would you like? \n")
             hero_obj.floor_level = int(tmp_level)

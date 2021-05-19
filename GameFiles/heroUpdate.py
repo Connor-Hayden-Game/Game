@@ -158,9 +158,10 @@ def playerClass(weapon):
 def increaseXP(amount, hero):
     hero.experience += amount
     tmp = hero.experience
-    if(hero.experience >= (200+(hero.player_level ** 2))):
-        hero.experience = 0 + (tmp - (200+(hero.player_level ** 2)))
+    if(hero.experience >= (10+(hero.player_level ** 2))):
+        hero.experience = 0 + (tmp - (10+(hero.player_level ** 2)))
         hero.player_level += 1
+        hero.points += 1
         print("You have leveled up! You are now level: ", hero.player_level)
     save(hero)
 
@@ -170,6 +171,28 @@ def addGold(amount, hero):
     hero.bank += amount
     save(hero)
 
+def add_points(hero):
+    accepted = ['health', 'melee', 'ranged', 'magic']
+    accepted_dict = dict(enumerate(accepted, start=1))
+    prompt = "\nWhich attribute?\n\t" + "\n\t".join("%d. %s"%n for n in accepted_dict.items())+"\n?"
+    attribute = False
+    while (attribute not in accepted):
+        attribute = input(prompt)
+        try:
+            attribute = accepted_dict[int(attribute)]
+        except:
+            print ("Input was invalid. Please enter either an attribute or its corresponding number")
+    amount = None
+    while type(amount) != int or amount > hero.points:
+        try:
+            amount = int(input("By how much?"))
+            assert amount <= hero.points
+        except AssertionError:
+            print ("You do not have that many points remaining")
+        except:
+            print ("You must enter an integer amount")
+    hero.__setattr__(attribute, hero.__getattribute__(attribute) + amount)
+    hero.points -= amount
 
 
 

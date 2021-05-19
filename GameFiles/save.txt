@@ -1,14 +1,14 @@
-hayden
-17
-15
+1
 0
 0
 0
-44
-level 3 armor of earth
+0
+10
+20
+level 1 armor of fire
 level 1 sword of fire
 level 1 amulet of fire
-25.0
-3
-5
+1
+1
+1
 Brute

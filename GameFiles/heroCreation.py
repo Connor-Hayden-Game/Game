@@ -8,7 +8,7 @@ class Character(object):
     melee               = 0
     ranged              = 0
     magic               = 0
-    points              = 30
+    points              = 10
 
     bank                = 20
     armor               = itemCreation.Item("armor", 1, "fire", "level 1 armor of fire")
@@ -56,7 +56,7 @@ class Character(object):
             return False
 if __name__ == "__main__":
     running = True
-    print ("Create a character! You have points to assign to health, melee, ranged, and magic.")
+    print ("Create a character! You have 10 points to assign to health, melee, ranged, and magic.")
     name = ''
     while not (Character.valid_name(name)):
         name = input("Please enter your character's name:")

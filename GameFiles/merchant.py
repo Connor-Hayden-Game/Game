@@ -19,7 +19,7 @@ def merchant(hero):
         if CHOICE in OPTIONS_DICT.keys():
             CHOICE = OPTIONS_DICT[CHOICE]
         if CHOICE == "Gamble":
-            if(hero.bank > cost):
+            if(hero.bank >= cost):
                 hero.bank -= cost
                 item = ic.random_item(hero)
                 print('You got: ' + item.name)
@@ -42,7 +42,7 @@ def coinFlip(hero):
     OPTIONS_DICT = dict(enumerate(OPTIONS_LIST, start=1))
     PROMPT = "\n".join("\t%d. %s"%n for n in OPTIONS_DICT.items())+"\nChoice:"
     while (running):
-        cost = int(input('How much would you like to bet?'))
+        cost = int(input('How much would you like to bet: '))
         if(cost <= hero.bank):
             hero.bank -= cost
             CHOICE = input(PROMPT)
