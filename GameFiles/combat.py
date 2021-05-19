@@ -154,13 +154,12 @@ def damageReceived(hero, monster):
 def combatSequence(hero, monster):
     currHealth = hero.health
     running = True
+    print("--------------------------------------------------------")
     print ("You have entered combat against a level " + str(monster.level) + " " + str(monster.mob_class)+ ".")
     OPTIONS_LIST = ["Attack", "Run Away"]
     OPTIONS_DICT = dict(enumerate(OPTIONS_LIST, start=1))
     PROMPT = "\n".join("\t%d. %s"%n for n in OPTIONS_DICT.items())+"\nChoice:"
     while (running):
-
-
         if(currHealth <= 0):
             print('You have been badly injured are being rushed to the infirmary.')
             running = False
@@ -168,6 +167,7 @@ def combatSequence(hero, monster):
             print('You have '+ str(currHealth) + ' health.')
             print('Enemy has '+ str(monster.health) + ' health.')
             CHOICE = input(PROMPT)
+            print("--------------------------------------------------------")
             try:
                 CHOICE = int(CHOICE)
             except:

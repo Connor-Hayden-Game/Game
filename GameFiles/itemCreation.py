@@ -20,7 +20,7 @@ def random_item(hero):
     element_list.extend(repeat("earth", 100))
     element_list.extend(repeat("water", 100))
     # element_list.extend(repeat("eternal", int(hero.player_level)))
-    item_level = hero.floor_level
+    item_level = hero.player_level
     item_type = random.choice(item_types)
     item_element =  random.choice(element_list)
     name = "level " + str(item_level) + " " + str(item_type) + " of " + str(item_element)

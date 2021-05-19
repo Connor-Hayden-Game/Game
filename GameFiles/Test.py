@@ -4,6 +4,7 @@ import heroUpdate as hu
 import itemCreation as ic
 import random
 from mobs import Monster
+from mobs import Boss
 import combat
 import merchant as me
 
@@ -41,7 +42,7 @@ class Inv(object):
 
 
 mob_list           = ["Brute", "Archer", " Warlock"]
-elements_list      = ["fire", "water", "earth"]
+elements_list      = ["fire" *100, "water" * 100, "earth" * 100, "eternal"]
 
 
 
@@ -102,7 +103,7 @@ def main():
 
     running = True
     print ("What would you like to do?")
-    OPTIONS_LIST = ["Change floor level", "Fight Mobs", "Merchant", "Exit"]
+    OPTIONS_LIST = ["See Hero Attributes", "Change floor level", "Fight Mobs", "Merchant", "Coin Flip",  "Exit"]
     OPTIONS_DICT = dict(enumerate(OPTIONS_LIST, start=1))
     PROMPT = "\n".join("\t%d. %s"%n for n in OPTIONS_DICT.items())+"\nChoice:"
     while (running):
@@ -113,7 +114,22 @@ def main():
             pass
         if CHOICE in OPTIONS_DICT.keys():
             CHOICE = OPTIONS_DICT[CHOICE]
-        if CHOICE == "Change floor level":
+        if CHOICE == "See Hero Attributes":
+            print( \
+                "Name    : " + str(hero_obj.name)         + "\n" \
+                "Health  : " + str(hero_obj.health)       + "\n" \
+                "Melee   : " + str(hero_obj.melee)        + "\n" \
+                "Ranged  : " + str(hero_obj.ranged)       + "\n" \
+                "Magic   : " + str(hero_obj.magic)        + "\n" \
+                "Money   : " + str(hero_obj.bank)         + "\n" \
+                "Exp     : " + str(hero_obj.experience)   + "\n" \
+                "Level   : " + str(hero_obj.player_level) + "\n" \
+                "Floor   : " + str(hero_obj.floor_level)  + "\n" \
+                "Weapon  : " + str(hero_obj.weapon.name)  + "\n" \
+                "Armor   : " + str(hero_obj.armor.name)   + "\n" \
+                "Amulet  : " + str(hero_obj.amulet.name)  + "\n" 
+             )
+        elif CHOICE == "Change floor level":
             tmp_level = input("What level would you like? \n")
             hero_obj.floor_level = int(tmp_level)
         elif CHOICE == "Fight Mobs":
@@ -123,8 +139,14 @@ def main():
             combat.combatSequence(hero_obj, mob2)
             mob3 = Monster(int(hero_obj.floor_level), random.choice(mob_list), random.choice(elements_list))
             combat.combatSequence(hero_obj, mob3)
+            print("Get ready for the Boss!")
+            mob4= Boss((int(hero_obj.floor_level) +1), random.choice(mob_list), random.choice(elements_list))
+            combat.combatSequence(hero_obj, mob4)
+
         elif CHOICE == "Merchant":
-            me.merchant(hero_obj, hero_inv)
+            me.merchant(hero_obj)
+        elif CHOICE == "Coin Flip":
+            me.coinFlip(hero_obj)
         elif CHOICE == "Exit":
             running = False
 

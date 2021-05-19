@@ -4,10 +4,10 @@ import heroUpdate
 
 class Character(object):
     name                = ''
-    health              = 1
-    melee               = 1
-    ranged              = 1
-    magic               = 1
+    health              = 0
+    melee               = 0
+    ranged              = 0
+    magic               = 0
     points              = 30
 
     bank                = 20
@@ -17,7 +17,7 @@ class Character(object):
     experience          = 1
     player_level        = 1
     floor_level         = 1
-    
+    player_class        = 'Brute'
 
 
     _attributes = ['name', 'health', 'melee', 'ranged', 'magic', 'points']
@@ -81,13 +81,3 @@ if __name__ == "__main__":
 
 
     heroUpdate.save(CHAR)
-
-
-
-
-
-
-
-
-
-    

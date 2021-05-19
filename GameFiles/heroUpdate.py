@@ -116,6 +116,34 @@ def equipToSlot(inventory, hero, inv_slot):
     save(hero)
     save_inv(inventory)
 
+def equipAndDrop(hero, item):
+
+    if(item.item_type == "armor"):
+        hero.health -= int(hero.armor.item_level)
+        hero.armor = item
+        hero.health += item.item_level
+
+    elif(item.item_type == "sword" or item.item_type == "bow" or item.item_type == "staff"):
+        if(hero.weapon.item_type == "sword"):
+            hero.melee -= int(hero.weapon.item_level)        
+        elif(hero.weapon.item_type == "bow"):
+            hero.ranged -= int(hero.weapon.item_level)
+        elif(hero.weapon.item_type == "staff"):
+            hero.magic -= int(hero.weapon.item_level)
+        hero.weapon = item
+        if(item.item_type == "sword"):
+            hero.melee += item.item_level
+        if(item.item_type == "bow"):
+            hero.ranged += item.item_level
+        if(item.item_type == "staff"):
+            hero.magic +=  item.item_level
+
+    elif(item.item_type == "amulet"):
+        hero.health -= int(hero.amulet.item_level)
+        hero.amulet = item
+        hero.health += item.item_level
+    save(hero)
+
 def viewInv(inventory):
     print(inventory.slots)
 

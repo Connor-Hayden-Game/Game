@@ -1,14 +1,14 @@
-ConnorTest2
-34
-5
-1
-1
+hayden
+17
+15
 0
-10
-level 5 armor of water
-level 5 sword of earth
-level 5 amulet of earth
-242.0
-13
+0
+0
+44
+level 3 armor of earth
+level 1 sword of fire
+level 1 amulet of fire
+25.0
+3
 5
 Brute
