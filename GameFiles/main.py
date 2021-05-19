@@ -71,13 +71,13 @@ def play_now():
         else: # writes to file as long as all inputs are valid
             file = open('interfaceSave.txt', 'w')
             file.write(str(heroName.get()) + '\n' + \
-                       str(health.get()) + '\n' + \
-                       str(melee.get()) + '\n'  + \
-                       str(ranged.get()) + '\n' + \
-                       str(magic.get()) + '\n'+ \
-                       str(points) + '\n' + \
-                       str(20) + '\n' + \ # money line
-                       str(armour) + '\n' + \
+                       str(health.get())   + '\n' + \
+                       str(melee.get())    + '\n' + \
+                       str(ranged.get())   + '\n' + \
+                       str(magic.get())    + '\n' + \
+                       str(points)         + '\n' + \
+                       str(20)             + '\n' + \
+                       str(armour)         + '\n' + \
                        str(weaponSelected))
             file.close()
             go_menu()
