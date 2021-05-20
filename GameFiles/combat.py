@@ -88,13 +88,13 @@ def damageReceived(hero, monster):
     dmg                                 = 0.0
 
 
-    if(hero.weapon.item_element == "eternal"):
+    if(hero.armor.item_element == "eternal"):
         playerElementType = 'eternal'
-    elif(hero.weapon.item_element == "fire"):
+    elif(hero.armor.item_element == "fire"):
         playerElementType = 'fire'
-    elif(hero.weapon.item_element == "water"):
+    elif(hero.armor.item_element == "water"):
         playerElementType = 'water'
-    elif(hero.weapon.item_element == "earth"):
+    elif(hero.armor.item_element == "earth"):
         playerElementType = 'earth'
 
     if(hero.player_class == 'Brute'):
@@ -161,7 +161,8 @@ def combatSequence(hero, monster):
     PROMPT = "\n".join("\t%d. %s"%n for n in OPTIONS_DICT.items())+"\nChoice:"
     while (running):
         if(currHealth <= 0):
-            print('You have been badly injured are being rushed to the infirmary.')
+            print('You have been badly injured are being rushed to the infirmary. \nYou lost half your gold.')
+            hero.bank /= 2
             running = False
         else:
             print('You have '+ str(round(currHealth, 2)) + ' health.')
@@ -183,7 +184,7 @@ def combatSequence(hero, monster):
                     print('The '+ str(monster.mob_class) + ' did ' + str(dmgReceived) + ' damage.\n')
                     currHealth -= dmgReceived
                 elif(monster.health <= 0):
-                    hu.increaseXP(monster.level+100,hero)
+                    hu.increaseXP(monster.level,hero)
                     gold = random.randint(0,monster.level)
                     hu.addGold(gold, hero)
                     print('The monster has died.\n')

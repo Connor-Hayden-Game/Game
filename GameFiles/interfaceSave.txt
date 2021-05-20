@@ -1,4 +1,4 @@
-connor
+con
 5
 5
 0
@@ -6,8 +6,8 @@ connor
 0
 20
 level 1 armor of fire
-level 1 bow of earth
-level 1 amulet of fire
+level 1 bow of water
+level 1 amulet of water
 1
 1
 1
