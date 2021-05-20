@@ -119,6 +119,8 @@ def equipToSlot(inventory, hero, inv_slot):
 def equipAndDrop(hero, item):
 
 
+
+
     if(item.item_type == "armor"):
         hero.health -= int(hero.armor.item_level)
         hero.armor = item
@@ -126,10 +128,13 @@ def equipAndDrop(hero, item):
 
     elif(item.item_type == "sword" or item.item_type == "bow" or item.item_type == "staff"):
         if(hero.weapon.item_type == "sword"):
+            hero.player_class = 'Brute'
             hero.melee -= int(hero.weapon.item_level)        
         elif(hero.weapon.item_type == "bow"):
+            hero.player_class = 'Archer'
             hero.ranged -= int(hero.weapon.item_level)
         elif(hero.weapon.item_type == "staff"):
+            hero.player_class = 'Warlock'
             hero.magic -= int(hero.weapon.item_level)
         hero.weapon = item
         if(item.item_type == "sword"):

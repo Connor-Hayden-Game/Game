@@ -1,14 +1,14 @@
-Russ
-7
-1
-0
-6
+Connor
+10
 0
 0
-level 3 armor of fire
-level 1 staff of earth
+0
+0
+20
+level 1 armor of fire
+level 1 sword of fire
 level 1 amulet of fire
-13.0
-3
-3
-Warlock
+1
+1
+1
+Brute

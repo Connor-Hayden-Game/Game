@@ -123,7 +123,7 @@ def main():
                 "Magic   : " + str(hero_obj.magic)                                                             + "\n" \
                 "Points  : " + str(hero_obj.points)                                                            + "\n" \
                 "Money   : " + str(hero_obj.bank)                                                              + "\n" \
-                "Exp     : " + str(hero_obj.experience)   + "/" + str(float(10+(hero_obj.player_level ** 2))) + "\n" \
+                "Exp     : " + str(hero_obj.experience)   + "/" + str(float(10+(hero_obj.player_level ** 2)))  + "\n" \
                 "Level   : " + str(hero_obj.player_level)                                                      + "\n" \
                 "Floor   : " + str(hero_obj.floor_level)                                                       + "\n" \
                 "Weapon  : " + str(hero_obj.weapon.name)                                                       + "\n" \
