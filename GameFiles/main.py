@@ -43,45 +43,58 @@ def play_now():
     canvas.create_text(400, 20, text="Hero Creation", font=('Candara', 25), fill='#1A5A14')
 
     def createHero():
-        if(elementClicked.get() == "Eternal"):
+        points = 10
+        if((weaponElementClicked.get() == "Eternal") or (armorClicked.get() == "Eternal") or (amuletClicked.get() == "Eternal")):
             tkinter.messagebox.showinfo("Ah, shucks!", "It looks like you will need to discover the Eternal element before using it to make weapons! Choose a new element.")
+        else:
+            # gets the user input and then sets it to a temp point to subtract from points var
+            healthPoints = int(health.get())
+            points -= healthPoints
+            meleePoints = int(melee.get())
+            points -= meleePoints
+            rangedPoints = int(ranged.get())
+            points -= rangedPoints
+            magicPoints = int(magic.get())
+            points -= magicPoints
             
-        points = 30
+            armorSelected = "level 1 armor of " + armorClicked.get().lower()
+            weaponSelected = "level 1 " + weaponClicked.get().lower() + " of " + weaponElementClicked.get().lower()
+            amuletSelected = "level 1 amulet of " + amuletClicked.get().lower()
 
-        # gets the user input and then sets it to a temp point to subtract from points var
-        healthPoints = int(health.get())
-        points -= healthPoints
-        meleePoints = int(melee.get())
-        points -= meleePoints
-        rangedPoints = int(ranged.get())
-        points -= rangedPoints
-        magicPoints = int(magic.get())
-        points -= magicPoints
+            if(weaponClicked.get() == "Sword"):
+                classSelected = "Brute"
+            elif(weaponClicked.get() == "Bow"):
+                classSelected = "Archer"
+            elif(weaponClicked.get() == "Magic Staff"):
+                classSelected = "Warlock"
 
-        weaponSelected = "level 1 " + weaponClicked.get().lower() + " of " + elementClicked.get().lower()
-
-        # input validation
-##      should add an elif that says "if they're all left blank do a messagebox saying please enter some stats
-        if(points < 0):
-            tkinter.messagebox.showinfo("Whoops!",  "You only have 30 points. Please adjust your attributes!")
-        elif((healthPoints < 0) or (meleePoints < 0) or (rangedPoints < 0) or (magicPoints < 0)):
-            tkinter.messagebox.showinfo("Whoops!", "You cannot have a nageative value!")
-        elif(healthPoints == 0):
-            tkinter.messagebox.showinfo("Whoops!", "Health cannot be zero!")
-        else: # writes to file as long as all inputs are valid
-            file = open('interfaceSave.txt', 'w')
-            file.write(str(heroName.get()) + '\n' + \
-                       str(health.get())   + '\n' + \
-                       str(melee.get())    + '\n' + \
-                       str(ranged.get())   + '\n' + \
-                       str(magic.get())    + '\n' + \
-                       str(points)         + '\n' + \
-                       str(20)             + '\n' + \
-                       str(armour)         + '\n' + \
-                       str(weaponSelected))
-            file.close()
-            go_menu()
-            tkinter.messagebox.showinfo("Congrats!", "Hero Created. Click Play Now to start your adventure!")
+            # input validation
+##          should add an elif that says "if they're all left blank do a messagebox saying please enter some stats
+            if(points < 0):
+                tkinter.messagebox.showinfo("Whoops!",  "You only have 10 points. Please adjust your attributes!")
+            elif((healthPoints < 0) or (meleePoints < 0) or (rangedPoints < 0) or (magicPoints < 0)):
+                tkinter.messagebox.showinfo("Whoops!", "You cannot have a nageative value!")
+            elif(healthPoints == 0):
+                tkinter.messagebox.showinfo("Whoops!", "Health cannot be zero!")
+            else: # writes to file as long as all inputs are valid
+                file = open('interfaceSave.txt', 'w')
+                file.write(str(heroName.get()) + '\n' + \
+                           str(health.get())   + '\n' + \
+                           str(melee.get())    + '\n' + \
+                           str(ranged.get())   + '\n' + \
+                           str(magic.get())    + '\n' + \
+                           str(points)         + '\n' + \
+                           str(20)             + '\n' + \
+                           str(armorSelected)  + '\n' + \
+                           str(weaponSelected) + '\n' + \
+                           str(amuletSelected) + '\n' + \
+                           str(1)              + '\n' + \
+                           str(1)              + '\n' + \
+                           str(1)              + '\n' + \
+                           str(classSelected))
+                file.close()
+                go_menu()
+                tkinter.messagebox.showinfo("Congrats!", "Hero Created. Click Play Now to start your adventure!")
             
     # take user input for user info
     heroLabel = Label(canvas, text="Hero Name:", fg='#1A5A14', bg='#DDE7EC')
@@ -90,7 +103,7 @@ def play_now():
     heroName = Entry(canvas)
     canvas.create_window(125,95, window=heroName, anchor='w')
 
-    canvas.create_text(180, 120, text="You have x skill points to spend. Choose wisely!", font=('Candara', 10, 'bold'), fill='#1A5A14')
+    canvas.create_text(180, 120, text="You have 10 skill points to spend. Choose wisely!", font=('Candara', 10, 'bold'), fill='#1A5A14')
 
     # creates labels/input boxes for all hero atttributes
     healthLabel = Label(canvas, text="Health:", fg='#1A5A14', bg='#DDE7EC')
@@ -113,9 +126,36 @@ def play_now():
     magic = Entry(canvas)
     canvas.create_window(125,220, window=magic, anchor='w')
 
+    canvas.create_line(800, 240, 0, 240)
+
+  #########################################################################################
+ ######################################              #######################################
+######################################   SELECTIONS   #######################################
+ ######################################              #######################################
+  #########################################################################################
+
+##  ARMOUR SELECTION   
+    armorLabel = Label(canvas, text="Select Your Armor Type:", fg='#1A5A14', bg='#DDE7EC')
+    canvas.create_window(50, 260, window=armorLabel, anchor='w')
+                
+    # Armor element dropdown menu options
+    armors = [
+            "Fire",
+            "Water",
+            "Earth",
+            "Eternal"
+            ]
+
+    # Access the menu widget using StringVar function
+    armorClicked = StringVar()
+                      
+    # Create Element dropdown menu
+    armorDrop = OptionMenu(canvas, armorClicked, *armors)
+    canvas.create_window(250, 260, window=armorDrop)
+
 ##  WEAPON SELECTION 
     weaponLabel = Label(canvas, text="Select Your Weapon:", fg='#1A5A14', bg='#DDE7EC')
-    canvas.create_window(50,260, window=weaponLabel, anchor='w')
+    canvas.create_window(50,310, window=weaponLabel, anchor='w')
 
     # Weapon dropdown menu options
     weapons = [
@@ -129,14 +169,14 @@ def play_now():
                   
     # Create weapon dropdown menu
     weaponDrop = OptionMenu(canvas, weaponClicked, *weapons)
-    canvas.create_window(225, 260, window=weaponDrop)
+    canvas.create_window(250, 310, window=weaponDrop)
 
 ##  ELEMENT SELECTION    
-    elementLabel = Label(canvas, text="Select Your Element:", fg='#1A5A14', bg='#DDE7EC')
-    canvas.create_window(50, 310, window=elementLabel, anchor='w')
+    weaponElementLabel = Label(canvas, text="Select Your Weapon Type:", fg='#1A5A14', bg='#DDE7EC')
+    canvas.create_window(50, 370, window=weaponElementLabel, anchor='w')
                 
     # Element dropdown menu options
-    elements = [
+    weaponElements = [
             "Fire",
             "Water",
             "Earth",
@@ -144,11 +184,30 @@ def play_now():
             ]
 
     # Access the menu widget using StringVar function
-    elementClicked = StringVar()
+    weaponElementClicked = StringVar()
                       
-    # Create element dropdown menu
-    elementDrop = OptionMenu(canvas, elementClicked, *elements)
-    canvas.create_window(225, 310, window=elementDrop)
+    # Create Element dropdown menu
+    weaponElementDrop = OptionMenu(canvas, weaponElementClicked, *weaponElements)
+    canvas.create_window(250, 370, window=weaponElementDrop)
+
+##  AMULET SELECTION   
+    amuletLabel = Label(canvas, text="Select Your Amulet Type:", fg='#1A5A14', bg='#DDE7EC')
+    canvas.create_window(50, 430, window=amuletLabel, anchor='w')
+                
+    # Armor element dropdown menu options
+    amulets = [
+            "Fire",
+            "Water",
+            "Earth",
+            "Eternal"
+            ]
+
+    # Access the menu widget using StringVar function
+    amuletClicked = StringVar()
+                      
+    # Create Element dropdown menu
+    amuletDrop = OptionMenu(canvas, amuletClicked, *amulets)
+    canvas.create_window(250, 430, window=amuletDrop)
 
     # submit button to write all attributes to text file
     submit_button = Button(window, text="Submit", command=createHero)

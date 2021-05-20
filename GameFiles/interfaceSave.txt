@@ -1,7 +1,14 @@
-condorock
-10
+connor
 5
 5
-5
-5
+0
+0
+0
 20
+level 1 armor of fire
+level 1 bow of earth
+level 1 amulet of fire
+1
+1
+1
+Archer
