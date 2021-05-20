@@ -1,14 +1,14 @@
+Russ
+7
 1
 0
+6
 0
 0
-0
-10
-20
-level 1 armor of fire
-level 1 sword of fire
+level 3 armor of fire
+level 1 staff of earth
 level 1 amulet of fire
-1
-1
-1
-Brute
+13.0
+3
+3
+Warlock
