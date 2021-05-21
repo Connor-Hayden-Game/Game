@@ -74,7 +74,6 @@ def create_now():
                 classSelected = "Warlock"
 
             # input validation
-##          should add an elif that says "if they're all left blank do a messagebox saying please enter some stats
             if(points < 0):
                 tkinter.messagebox.showinfo("Whoops!",  "You only have 10 points. Please adjust your attributes!")
             elif((healthPoints < 0) or (meleePoints < 0) or (rangedPoints < 0) or (magicPoints < 0)):
@@ -133,13 +132,8 @@ def create_now():
 
     canvas.create_line(800, 240, 0, 240)
 
-  #########################################################################################
- ######################################              #######################################
-######################################   SELECTIONS   #######################################
- ######################################              #######################################
-  #########################################################################################
 
-##  ARMOUR SELECTION   
+    # ARMOUR SELECTION   
     armorLabel = Label(canvas, text="Select Your Armor Type:", fg='#1A5A14', bg='#DDE7EC')
     canvas.create_window(50, 260, window=armorLabel, anchor='w')
                 
@@ -158,7 +152,7 @@ def create_now():
     armorDrop = OptionMenu(canvas, armorClicked, *armors)
     canvas.create_window(250, 260, window=armorDrop)
 
-##  WEAPON SELECTION 
+    # WEAPON SELECTION 
     weaponLabel = Label(canvas, text="Select Your Weapon:", fg='#1A5A14', bg='#DDE7EC')
     canvas.create_window(50,310, window=weaponLabel, anchor='w')
 
@@ -176,7 +170,7 @@ def create_now():
     weaponDrop = OptionMenu(canvas, weaponClicked, *weapons)
     canvas.create_window(250, 310, window=weaponDrop)
 
-##  ELEMENT SELECTION    
+    # ELEMENT SELECTION    
     weaponElementLabel = Label(canvas, text="Select Your Weapon Type:", fg='#1A5A14', bg='#DDE7EC')
     canvas.create_window(50, 370, window=weaponElementLabel, anchor='w')
                 
@@ -195,7 +189,7 @@ def create_now():
     weaponElementDrop = OptionMenu(canvas, weaponElementClicked, *weaponElements)
     canvas.create_window(250, 370, window=weaponElementDrop)
 
-##  AMULET SELECTION   
+    # AMULET SELECTION   
     amuletLabel = Label(canvas, text="Select Your Amulet Type:", fg='#1A5A14', bg='#DDE7EC')
     canvas.create_window(50, 430, window=amuletLabel, anchor='w')
                 
@@ -218,12 +212,7 @@ def create_now():
     submit_button = Button(window, text="Submit", command=createHero)
     canvas.create_window(400,530, window=submit_button)
 
-
-  #########################################################################################
- ######################################              #######################################
-####################################   Play Now Screen   ####################################
- ######################################              #######################################
-  #########################################################################################
+# PLAY NOW SCREEN
 def play_now():
     chkFile = "interfaceSave.txt"
     if os.path.isfile(chkFile):
@@ -246,53 +235,26 @@ def play_now():
         text2Print = tkinter.scrolledtext.ScrolledText(window, height=23, width=40, fg='#1A5A14', bg='#9BB0C4', font=('Calibri', 15))
         canvas.create_window(5, 5, window=text2Print, anchor='nw')
 
-        def enterTextClick(event=None):
-            # retrieve what the user typed
-            userText = userEntry.get()
-
-            # insert user's entry into the console
-            text2Print.insert(INSERT, userText + '\n')
-            userTextBar.delete(0, 'end')
-
-            # scroll the bar with the text entrys
-            text2Print.yview('end')
-
-        def enterTextReturn(event):
-            # retrieve what the user typed
-            userText = userEntry.get()
-
-            # insert user's entry into the console
-            text2Print.insert(INSERT, userText + '\n')
-            userTextBar.delete(0, 'end')
-
-            # scroll the bar with the text entrys
-            text2Print.yview('end')
-        
-        userEntry = StringVar()
-        userTextBar = Entry(canvas, justify=LEFT, textvariable=userEntry, width=50, bg='#9BB0C4')
-        canvas.create_window(5, 580, window=userTextBar, anchor='w')
-
-        # enter button for console text
-        userEnterText = Button(window, text="Enter", command=enterTextClick, bg='#1A5A14', font=('Matura MT Script Capitals', 10), width=10)
-        canvas.create_window(315, 580, window=userEnterText, anchor='w')
-
-        # bind return key
-        window.bind('<Return>', enterTextClick)
     else:
         tkinter.messagebox.showinfo("Whoops!", "It looks like you have not created a hero yet! Click \"Create Hero\" first.")
 
-      #########################################################################################
-     ######################################              #######################################
-    #####################################    Live Stats    ######################################
-     ######################################              #######################################
-      #########################################################################################
-
+    userEntry = StringVar()
+    userTextBar = Entry(canvas, justify=LEFT, textvariable=userEntry, width=50, bg='#9BB0C4')
+    canvas.create_window(5, 580, window=userTextBar, anchor='w')
+    userTextBar.focus_set()
+    
+    OPTIONS_LIST = ["Fight Mobs", "Add Points", "Visit Merchant", "Coin Flip", "Change floor level",  "Exit"]
+    OPTIONS_DICT = dict(enumerate(OPTIONS_LIST, start=1))
+    PROMPT = "\n".join("\t%d. %s"%n for n in OPTIONS_DICT.items())
+    
+    text2Print.insert(INSERT, "What would you like to do?\n\n")
+    text2Print.insert(INSERT, PROMPT + "\n")
+    text2Print.insert(INSERT, "------------------------------------------------------------------\n")
+    
+    # LIVE STATS
     file = open('interfaceSave.txt','r+')
     lines = file.readlines()
 
-##  CREATING BLANK COLUMNS FOR SPACING
-    
-    
     displayName = Label(rightFrame, text=lines[0].rstrip('\n') + "'s Stats", borderwidth=8, fg='#1A5A14', bg='grey', font=('Matura MT Script Capitals', 12))
     displayName.grid(row=0, padx=125)
 
@@ -323,7 +285,7 @@ def play_now():
 
     displayExp = Label(statsFrame, text="EXP: ", borderwidth=1, fg='#1A5A14', bg='#808080')
     displayExp.grid(row=3, column=3, ipadx=3, ipady=3, sticky=E)
-    expStat = Label(statsFrame, text=lines[10].rstrip('\n') + "/" + str(float(10+(float(lines[11].rstrip('\n')) ** 2))) , borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
+    expStat = Label(statsFrame, text=lines[10].rstrip('\n') + "/" + str(float(10+(float(lines[11].rstrip('\n')) ** 2))), borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
     expStat.grid(row=3, column=4, ipadx=3, ipady=3, sticky=W)
 
     displayLvl = Label(statsFrame, text="Player Level: ", borderwidth=1, fg='#1A5A14', bg='#808080')
@@ -335,6 +297,125 @@ def play_now():
     displayFloor.grid(row=4, column=3, ipadx=3, ipady=3, sticky=E)
     floorStat = Label(statsFrame, text=lines[12].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
     floorStat.grid(row=4, column=4, ipadx=3, ipady=3, sticky=W)
+
+    # LIVE UPDATE THE PLAYERS STATS
+    def updateStats(statsFrame):
+        file = open('interfaceSave.txt','r+')
+        lines = file.readlines()
+
+        tempFrame = statsFrame
+        tempFrame.destroy()
+        statsFrame = Frame(bd=2, bg='grey', relief=RAISED)
+        canvas.create_window(435, 40, window=statsFrame, height=105, width=360, anchor='nw')
+
+        displayName = Label(rightFrame, text=lines[0].rstrip('\n') + "'s Stats", borderwidth=8, fg='#1A5A14', bg='grey', font=('Matura MT Script Capitals', 12))
+        displayName.grid(row=0, padx=125)
+
+        displayHealth = Label(statsFrame, text="Health: ", borderwidth=1, fg='#1A5A14', bg='#808080')
+        displayHealth.grid(row=1, column=0, ipadx=3, ipady=3, sticky=E)
+        healthStat = Label(statsFrame, text=lines[1].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
+        healthStat.grid(row=1, column=1, ipadx=3, ipady=3, sticky=W)
+
+        displayMelee = Label(statsFrame, text="Melee: ", borderwidth=1, fg='#1A5A14', bg='#808080')
+        displayMelee.grid(row=1, column=3, ipadx=3, ipady=3, sticky=E)
+        meleeStat = Label(statsFrame, text=lines[2].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
+        meleeStat.grid(row=1, column=4, ipadx=3, ipady=3, sticky=W)
+
+        displayRanged = Label(statsFrame, text="Ranged: ", borderwidth=1, fg='#1A5A14', bg='#808080')
+        displayRanged.grid(row=2, column=0, ipadx=3, ipady=3, sticky=E)
+        rangedStat = Label(statsFrame, text=lines[3].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
+        rangedStat.grid(row=2, column=1, ipadx=3, ipady=3, sticky=W)
+
+        displayMagic = Label(statsFrame, text="Magic: ", borderwidth=1, fg='#1A5A14', bg='#808080')
+        displayMagic.grid(row=2, column=3, ipadx=3, ipady=3, sticky=E)
+        magicStat = Label(statsFrame, text=lines[4].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
+        magicStat.grid(row=2, column=4, ipadx=3, ipady=3, sticky=W)
+
+        displayPoints = Label(statsFrame, text="Points: ", borderwidth=1, fg='#1A5A14', bg='#808080')
+        displayPoints.grid(row=3, column=0, ipadx=3, ipady=3, sticky=E)
+        pointsStat = Label(statsFrame, text=lines[5].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
+        pointsStat.grid(row=3, column=1, ipadx=3, ipady=3, sticky=W)
+
+        displayExp = Label(statsFrame, text="EXP: ", borderwidth=1, fg='#1A5A14', bg='#808080')
+        displayExp.grid(row=3, column=3, ipadx=3, ipady=3, sticky=E)
+        expStat = Label(statsFrame, text=lines[10].rstrip('\n') + "/" + str(float(10+(float(lines[11].rstrip('\n')) ** 2))), borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
+        expStat.grid(row=3, column=4, ipadx=3, ipady=3, sticky=W)
+
+        displayLvl = Label(statsFrame, text="Player Level: ", borderwidth=1, fg='#1A5A14', bg='#808080')
+        displayLvl.grid(row=4, column=0, ipadx=3, ipady=3, sticky=E)
+        lvlStat = Label(statsFrame, text=lines[11].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
+        lvlStat.grid(row=4, column=1, ipadx=3, ipady=3, sticky=W)
+
+        displayFloor = Label(statsFrame, text="Floor Level: ", borderwidth=1, fg='#1A5A14', bg='#808080')
+        displayFloor.grid(row=4, column=3, ipadx=3, ipady=3, sticky=E)
+        floorStat = Label(statsFrame, text=lines[12].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
+        floorStat.grid(row=4, column=4, ipadx=3, ipady=3, sticky=W)
+
+    # IF ENTER BUTTON IS CLICKED
+    def enterTextClick(event=None):
+        # retrieve what the user typed
+        CHOICE = userEntry.get()
+
+        # insert user's entry into the console
+        text2Print.insert(INSERT, CHOICE + '\n')
+        text2Print.insert(INSERT, "------------------------------------------------------------------\n")
+        userTextBar.delete(0, 'end')
+
+        # scroll the bar with the text entrys
+        text2Print.yview('end')
+
+        # update stats
+        updateStats(statsFrame)
+
+        # if CHOICE in OPTIONS_DICT.keys():
+        #    CHOICE = OPTIONS_DICT[CHOICE]
+        if CHOICE == "1":
+            # mob = Monster(int(hero_obj.floor_level), random.choice(mob_list), random.choice(elements_list))
+            # combat.combatSequence(hero_obj, mob)
+            # mob2 = Monster(int(hero_obj.floor_level), random.choice(mob_list), random.choice(elements_list))
+            # combat.combatSequence(hero_obj, mob2)
+            # mob3 = Monster(int(hero_obj.floor_level), random.choice(mob_list), random.choice(elements_list))
+            # combat.combatSequence(hero_obj, mob3)
+            # print("Get ready for the Boss!")
+            # mob4= Boss((int(hero_obj.floor_level) +1), random.choice(mob_list), random.choice(elements_list))
+            # combat.combatSequence(hero_obj, mob4)
+            text2Print.insert(INSERT, "fighting mobs \n")
+        elif CHOICE == "2":
+            # hu.add_points(hero_obj)
+            text2Print.insert(INSERT, "adding points \n")
+        elif CHOICE == "3":
+            # me.merchant(hero_obj)
+            text2Print.insert(INSERT, "visiting merchant \n")
+        elif CHOICE == "4":
+            # me.coinFlip(hero_obj)
+            text2Print.insert(INSERT, "flipping coin \n")
+        elif CHOICE == "5":
+            text2Print.insert(INSERT, "What floor level would you like? \n")
+            # floorChoice = the next input
+            # if floorChoice is not valid:
+                # text2Print.insert(INSERT, "please enter a valid floor number \n")
+            # else:
+                # write to file to update floor
+                # text2Print.insert(INSERT, "floor updated! \n")
+                
+            # hero_obj.floor_level = int(tmp_level)
+        elif CHOICE == "6":
+            # running = False
+            text2Print.insert(INSERT, "Exiting \n")
+            close_window()
+            
+        text2Print.insert(INSERT, "------------------------------------------------------------------\n")
+
+    # IF RETURN BUTTON IS PUSHED
+    def enterTextReturn(event):
+        pass
+
+    # enter button for console text
+    userEnterText = Button(window, text="Enter", command=enterTextClick, bg='#1A5A14', font=('Matura MT Script Capitals', 10), width=10)
+    canvas.create_window(315, 580, window=userEnterText, anchor='w')
+
+    # bind return key
+    window.bind('<Return>', enterTextClick)
     
 # return to main menu
 def go_menu():

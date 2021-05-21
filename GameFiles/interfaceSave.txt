@@ -1,13 +1,13 @@
-Mara
-1
+jumbalo
+2
 3
 1
 2
-3
+2
 20
 level 1 armor of water
-level 1 magic staff of water
-level 1 amulet of fire
+level 1 magic staff of earth
+level 1 amulet of earth
 1
 1
 1
