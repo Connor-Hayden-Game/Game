@@ -1,14 +1,14 @@
-Hayden
-75
+Abby
+5
+6
 0
 0
-60
 0
-0
-level 32 armor of water
-level 32 staff of water
-level 32 amulet of earth
-312.0
-32
-30
-Warlock
+23
+level 1 armor of fire
+level 1 sword of fire
+level 1 amulet of fire
+6.0
+1
+1
+Brute

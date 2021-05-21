@@ -257,6 +257,7 @@ def play_now():
             # scroll the bar with the text entrys
             text2Print.yview('end')
 
+
         def enterTextReturn(event):
             # retrieve what the user typed
             userText = userEntry.get()
@@ -323,7 +324,7 @@ def play_now():
 
     displayExp = Label(statsFrame, text="EXP: ", borderwidth=1, fg='#1A5A14', bg='#808080')
     displayExp.grid(row=3, column=3, ipadx=3, ipady=3, sticky=E)
-    expStat = Label(statsFrame, text=lines[10].rstrip('\n') + "/" + str(float(10+(float(lines[11].rstrip('\n')) ** 2))) , borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
+    expStat = Label(statsFrame, text= currXP , borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
     expStat.grid(row=3, column=4, ipadx=3, ipady=3, sticky=W)
 
     displayLvl = Label(statsFrame, text="Player Level: ", borderwidth=1, fg='#1A5A14', bg='#808080')
