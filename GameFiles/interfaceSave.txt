@@ -1,9 +1,9 @@
-Connor
+Mara
+1
+3
+1
 2
-1
-1
-1
-5
+3
 20
 level 1 armor of water
 level 1 magic staff of water

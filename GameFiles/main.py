@@ -219,9 +219,11 @@ def create_now():
     canvas.create_window(400,530, window=submit_button)
 
 
-######################################
-########## PLAY NOW SCREEN ###########
-######################################
+  #########################################################################################
+ ######################################              #######################################
+####################################   Play Now Screen   ####################################
+ ######################################              #######################################
+  #########################################################################################
 def play_now():
     chkFile = "interfaceSave.txt"
     if os.path.isfile(chkFile):
@@ -230,8 +232,11 @@ def play_now():
         canvas.configure(bg='#DDE7EC')
 
         # creates canvas
-        statsFrame = Frame(bg='grey')
-        canvas.create_window(430,5, window=statsFrame, height=590, width=368, anchor='nw')
+        rightFrame = Frame(bg='grey')
+        canvas.create_window(430,5, window=rightFrame, height=590, width=368, anchor='nw')
+
+        statsFrame = Frame(bd=2, bg='grey', relief=RAISED)
+        canvas.create_window(435, 40, window=statsFrame, height=105, width=360, anchor='nw')
 
         # main menu button
         main_menu_button = Button(window, text="Main Menu", command=go_menu)
@@ -262,10 +267,6 @@ def play_now():
 
             # scroll the bar with the text entrys
             text2Print.yview('end')
-            
-        # entry box for the play now screen
-        # userNameDisplay = Label(canvas, text="Name:", fg='#1A5A14', bg='#DDE7EC', font=('Calibri', 10))
-        # canvas.create_window(10,500, window=userNameDisplay, anchor='w')
         
         userEntry = StringVar()
         userTextBar = Entry(canvas, justify=LEFT, textvariable=userEntry, width=50, bg='#9BB0C4')
@@ -280,39 +281,60 @@ def play_now():
     else:
         tkinter.messagebox.showinfo("Whoops!", "It looks like you have not created a hero yet! Click \"Create Hero\" first.")
 
-    ###################################
-    ########CREATING LIVE STATS########
-    ###################################
+      #########################################################################################
+     ######################################              #######################################
+    #####################################    Live Stats    ######################################
+     ######################################              #######################################
+      #########################################################################################
 
     file = open('interfaceSave.txt','r+')
     lines = file.readlines()
+
+##  CREATING BLANK COLUMNS FOR SPACING
     
-    displayName = Label(statsFrame, text=lines[0].rstrip('\n') + "'s Stats", borderwidth=1, fg='#1A5A14', bg='grey')
-    displayName.grid(row=0, column=2, columnspan=2)
     
-    displayHealth = Label(statsFrame, text="Health: " + lines[1].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='grey')
-    displayHealth.grid(row=1, padx=3, pady=3, sticky=E)
+    displayName = Label(rightFrame, text=lines[0].rstrip('\n') + "'s Stats", borderwidth=8, fg='#1A5A14', bg='grey', font=('Matura MT Script Capitals', 12))
+    displayName.grid(row=0, padx=125)
 
-    displayMelee = Label(statsFrame, text="Melee: " + lines[2].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='grey')
-    displayMelee.grid(row=2, padx=3, pady=3, sticky=E)
+    displayHealth = Label(statsFrame, text="Health: ", borderwidth=1, fg='#1A5A14', bg='#808080')
+    displayHealth.grid(row=1, column=0, ipadx=3, ipady=3, sticky=E)
+    healthStat = Label(statsFrame, text=lines[1].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
+    healthStat.grid(row=1, column=1, ipadx=3, ipady=3, sticky=W)
 
-    displayRanged = Label(statsFrame, text="Ranged: " + lines[3].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='grey')
-    displayRanged.grid(row=3, padx=3, pady=3, sticky=E)
+    displayMelee = Label(statsFrame, text="Melee: ", borderwidth=1, fg='#1A5A14', bg='#808080')
+    displayMelee.grid(row=1, column=3, ipadx=3, ipady=3, sticky=E)
+    meleeStat = Label(statsFrame, text=lines[2].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
+    meleeStat.grid(row=1, column=4, ipadx=3, ipady=3, sticky=W)
 
-    displayMagic = Label(statsFrame, text="Magic: " + lines[4].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='grey')
-    displayMagic.grid(row=4, padx=3, pady=3, sticky=E)
+    displayRanged = Label(statsFrame, text="Ranged: ", borderwidth=1, fg='#1A5A14', bg='#808080')
+    displayRanged.grid(row=2, column=0, ipadx=3, ipady=3, sticky=E)
+    rangedStat = Label(statsFrame, text=lines[3].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
+    rangedStat.grid(row=2, column=1, ipadx=3, ipady=3, sticky=W)
 
-    displayPoints = Label(statsFrame, text="Points: " + lines[5].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='grey')
-    displayPoints.grid(row=5, padx=3, pady=3, sticky=E)
+    displayMagic = Label(statsFrame, text="Magic: ", borderwidth=1, fg='#1A5A14', bg='#808080')
+    displayMagic.grid(row=2, column=3, ipadx=3, ipady=3, sticky=E)
+    magicStat = Label(statsFrame, text=lines[4].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
+    magicStat.grid(row=2, column=4, ipadx=3, ipady=3, sticky=W)
 
-    displayExp = Label(statsFrame, text="EXP: " + lines[10].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='grey')
-    displayExp.grid(row=6, padx=3, pady=3, sticky=E)
+    displayPoints = Label(statsFrame, text="Points: ", borderwidth=1, fg='#1A5A14', bg='#808080')
+    displayPoints.grid(row=3, column=0, ipadx=3, ipady=3, sticky=E)
+    pointsStat = Label(statsFrame, text=lines[5].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
+    pointsStat.grid(row=3, column=1, ipadx=3, ipady=3, sticky=W)
 
-    displayLvl = Label(statsFrame, text="Player Level: " + lines[11].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='grey')
-    displayLvl.grid(row=7, padx=3, pady=3, sticky=E)
+    displayExp = Label(statsFrame, text="EXP: ", borderwidth=1, fg='#1A5A14', bg='#808080')
+    displayExp.grid(row=3, column=3, ipadx=3, ipady=3, sticky=E)
+    expStat = Label(statsFrame, text=lines[10].rstrip('\n') + "/", borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
+    expStat.grid(row=3, column=4, ipadx=3, ipady=3, sticky=W)
 
-    displayFloor = Label(statsFrame, text="Floor Level: " + lines[12].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='grey')
-    displayFloor.grid(row=8, padx=3, pady=3, sticky=E)
+    displayLvl = Label(statsFrame, text="Player Level: ", borderwidth=1, fg='#1A5A14', bg='#808080')
+    displayLvl.grid(row=4, column=0, ipadx=3, ipady=3, sticky=E)
+    lvlStat = Label(statsFrame, text=lines[11].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
+    lvlStat.grid(row=4, column=1, ipadx=3, ipady=3, sticky=W)
+
+    displayFloor = Label(statsFrame, text="Floor Level: ", borderwidth=1, fg='#1A5A14', bg='#808080')
+    displayFloor.grid(row=4, column=3, ipadx=3, ipady=3, sticky=E)
+    floorStat = Label(statsFrame, text=lines[12].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
+    floorStat.grid(row=4, column=4, ipadx=3, ipady=3, sticky=W)
     
 # return to main menu
 def go_menu():
