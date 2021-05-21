@@ -2,9 +2,11 @@
 
 from tkinter import *
 import tkinter.messagebox
+import tkinter.scrolledtext
 from win_settings import *
 import heroCreation as hc
 import heroUpdate as hu
+import os
 
 # creates canvas
 canvas = Canvas(window, width=800, height=600)
@@ -22,14 +24,17 @@ def display_menu():
     canvas.create_text(400, 200, text="Castle Reign", font=('Matura MT Script Capitals', 75), fill='#1A5A14')
 
     # add buttons to canvas (named per function)
-    play_button = Button(window, text="Create Hero", bg='#1A5A14', font=('Matura MT Script Capitals', 15), padx=2, pady=2, command=play_now)
+    play_button = Button(window, text="Play now", bg='#1A5A14', activebackground='#0D2B0A', font=('Matura MT Script Capitals', 15), padx=2, pady=2, command=play_now)
     canvas.create_window(400,280, window=play_button)
+    
+    create_button = Button(window, text="Create hero", bg='#1A5A14', activebackground='#0D2B0A', font=('Matura MT Script Capitals', 13), padx=2, pady=2, command=create_now)
+    canvas.create_window(400,335, window=create_button)
 
-    exit_button = Button(window, text="Exit to Desktop", command=close_window)
-    canvas.create_window(400,325, window=exit_button)
+    exit_button = Button(window, text="Exit to desktop", bg='#69181F', activebackground='#4F1318', highlightcolor='green', font=('Matura MT Script Capitals', 10), padx=0, pady=0, command=close_window)
+    canvas.create_window(400,380, window=exit_button)
 
 # clear canvas for the game interface
-def play_now():
+def create_now():
     # clear canvas in order to start fresh
     canvas.delete('all')
 
@@ -212,6 +217,102 @@ def play_now():
     # submit button to write all attributes to text file
     submit_button = Button(window, text="Submit", command=createHero)
     canvas.create_window(400,530, window=submit_button)
+
+
+######################################
+########## PLAY NOW SCREEN ###########
+######################################
+def play_now():
+    chkFile = "interfaceSave.txt"
+    if os.path.isfile(chkFile):
+        # clear canvas in order to start fresh
+        canvas.delete('all')
+        canvas.configure(bg='#DDE7EC')
+
+        # creates canvas
+        statsFrame = Frame(bg='grey')
+        canvas.create_window(430,5, window=statsFrame, height=590, width=368, anchor='nw')
+
+        # main menu button
+        main_menu_button = Button(window, text="Main Menu", command=go_menu)
+        canvas.create_window(760,20, window=main_menu_button)
+
+        # create scrolling console box
+        text2Print = scrolledtext.ScrolledText(window, height=23, width=40, fg='#1A5A14', bg='#9BB0C4', font=('Calibri', 15))
+        canvas.create_window(5, 5, window=text2Print, anchor='nw')
+
+        def enterTextClick(event=None):
+            # retrieve what the user typed
+            userText = userEntry.get()
+
+            # insert user's entry into the console
+            text2Print.insert(INSERT, userText + '\n')
+            userTextBar.delete(0, 'end')
+
+            # scroll the bar with the text entrys
+            text2Print.yview('end')
+
+        def enterTextReturn(event):
+            # retrieve what the user typed
+            userText = userEntry.get()
+
+            # insert user's entry into the console
+            text2Print.insert(INSERT, userText + '\n')
+            userTextBar.delete(0, 'end')
+
+            # scroll the bar with the text entrys
+            text2Print.yview('end')
+            
+        # entry box for the play now screen
+        # userNameDisplay = Label(canvas, text="Name:", fg='#1A5A14', bg='#DDE7EC', font=('Calibri', 10))
+        # canvas.create_window(10,500, window=userNameDisplay, anchor='w')
+        
+        userEntry = StringVar()
+        userTextBar = Entry(canvas, justify=LEFT, textvariable=userEntry, width=50, bg='#9BB0C4')
+        canvas.create_window(5, 580, window=userTextBar, anchor='w')
+
+        # enter button for console text
+        userEnterText = Button(window, text="Enter", command=enterTextClick, bg='#1A5A14', font=('Matura MT Script Capitals', 10), width=10)
+        canvas.create_window(315, 580, window=userEnterText, anchor='w')
+
+        # bind return key
+        window.bind('<Return>', enterTextClick)
+    else:
+        tkinter.messagebox.showinfo("Whoops!", "It looks like you have not created a hero yet! Click \"Create Hero\" first.")
+
+    ###################################
+    ########CREATING LIVE STATS########
+    ###################################
+
+    file = open('interfaceSave.txt','r+')
+    lines = file.readlines()
+    
+    displayName = Label(statsFrame, text=lines[0].rstrip('\n') + "'s Stats", borderwidth=1, fg='#1A5A14', bg='grey')
+    displayName.grid(row=0, column=2, columnspan=2)
+    
+    displayHealth = Label(statsFrame, text="Health: " + lines[1].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='grey')
+    displayHealth.grid(row=1, padx=3, pady=3, sticky=E)
+
+    displayMelee = Label(statsFrame, text="Melee: " + lines[2].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='grey')
+    displayMelee.grid(row=2, padx=3, pady=3, sticky=E)
+
+    displayRanged = Label(statsFrame, text="Ranged: " + lines[3].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='grey')
+    displayRanged.grid(row=3, padx=3, pady=3, sticky=E)
+
+    displayMagic = Label(statsFrame, text="Magic: " + lines[4].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='grey')
+    displayMagic.grid(row=4, padx=3, pady=3, sticky=E)
+
+    displayPoints = Label(statsFrame, text="Points: " + lines[5].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='grey')
+    displayPoints.grid(row=5, padx=3, pady=3, sticky=E)
+
+    displayExp = Label(statsFrame, text="EXP: " + lines[10].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='grey')
+    displayExp.grid(row=6, padx=3, pady=3, sticky=E)
+
+    displayLvl = Label(statsFrame, text="Player Level: " + lines[11].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='grey')
+    displayLvl.grid(row=7, padx=3, pady=3, sticky=E)
+
+    displayFloor = Label(statsFrame, text="Floor Level: " + lines[12].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='grey')
+    displayFloor.grid(row=8, padx=3, pady=3, sticky=E)
     
 # return to main menu
 def go_menu():

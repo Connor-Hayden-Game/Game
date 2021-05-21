@@ -21,3 +21,6 @@ y = (screen_height / 2) - (win_height / 2)
 
 # set geometry of window
 window.geometry(f'{win_width}x{win_height}+{int(x)}+{int(y)}')
+
+# set a transparent color
+# window.wm_attributes('-transparentcolor','purple')

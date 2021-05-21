@@ -5,7 +5,7 @@ import heroUpdate
 class Character(object):
     name                = ''
     health              = 0
-    melee               = 0
+    melee               = 1
     ranged              = 0
     magic               = 0
     points              = 10

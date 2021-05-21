@@ -1,14 +1,14 @@
-con
+Connor
+2
+1
+1
+1
 5
-5
-0
-0
-0
 20
-level 1 armor of fire
-level 1 bow of water
-level 1 amulet of water
+level 1 armor of water
+level 1 magic staff of water
+level 1 amulet of fire
 1
 1
 1
-Archer
+Warlock
