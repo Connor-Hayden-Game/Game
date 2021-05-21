@@ -243,7 +243,7 @@ def play_now():
         canvas.create_window(760,20, window=main_menu_button)
 
         # create scrolling console box
-        text2Print = scrolledtext.ScrolledText(window, height=23, width=40, fg='#1A5A14', bg='#9BB0C4', font=('Calibri', 15))
+        text2Print = tkinter.scrolledtext.ScrolledText(window, height=23, width=40, fg='#1A5A14', bg='#9BB0C4', font=('Calibri', 15))
         canvas.create_window(5, 5, window=text2Print, anchor='nw')
 
         def enterTextClick(event=None):
@@ -323,7 +323,7 @@ def play_now():
 
     displayExp = Label(statsFrame, text="EXP: ", borderwidth=1, fg='#1A5A14', bg='#808080')
     displayExp.grid(row=3, column=3, ipadx=3, ipady=3, sticky=E)
-    expStat = Label(statsFrame, text=lines[10].rstrip('\n') + "/", borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
+    expStat = Label(statsFrame, text=lines[10].rstrip('\n') + "/" + str(float(10+(float(lines[11].rstrip('\n')) ** 2))) , borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
     expStat.grid(row=3, column=4, ipadx=3, ipady=3, sticky=W)
 
     displayLvl = Label(statsFrame, text="Player Level: ", borderwidth=1, fg='#1A5A14', bg='#808080')
