@@ -235,42 +235,6 @@ def play_now():
         text2Print = tkinter.scrolledtext.ScrolledText(window, height=23, width=40, fg='#1A5A14', bg='#9BB0C4', font=('Calibri', 15))
         canvas.create_window(5, 5, window=text2Print, anchor='nw')
 
-<<<<<<< HEAD
-=======
-        def enterTextClick(event=None):
-            # retrieve what the user typed
-            userText = userEntry.get()
-
-            # insert user's entry into the console
-            text2Print.insert(INSERT, userText + '\n')
-            userTextBar.delete(0, 'end')
-
-            # scroll the bar with the text entrys
-            text2Print.yview('end')
-
-
-        def enterTextReturn(event):
-            # retrieve what the user typed
-            userText = userEntry.get()
-
-            # insert user's entry into the console
-            text2Print.insert(INSERT, userText + '\n')
-            userTextBar.delete(0, 'end')
-
-            # scroll the bar with the text entrys
-            text2Print.yview('end')
-        
-        userEntry = StringVar()
-        userTextBar = Entry(canvas, justify=LEFT, textvariable=userEntry, width=50, bg='#9BB0C4')
-        canvas.create_window(5, 580, window=userTextBar, anchor='w')
-
-        # enter button for console text
-        userEnterText = Button(window, text="Enter", command=enterTextClick, bg='#1A5A14', font=('Matura MT Script Capitals', 10), width=10)
-        canvas.create_window(315, 580, window=userEnterText, anchor='w')
-
-        # bind return key
-        window.bind('<Return>', enterTextClick)
->>>>>>> c9d720d39ab0c30e485a67ab5a6379f39d593b8f
     else:
         tkinter.messagebox.showinfo("Whoops!", "It looks like you have not created a hero yet! Click \"Create Hero\" first.")
 
@@ -321,11 +285,7 @@ def play_now():
 
     displayExp = Label(statsFrame, text="EXP: ", borderwidth=1, fg='#1A5A14', bg='#808080')
     displayExp.grid(row=3, column=3, ipadx=3, ipady=3, sticky=E)
-<<<<<<< HEAD
     expStat = Label(statsFrame, text=lines[10].rstrip('\n') + "/" + str(float(10+(float(lines[11].rstrip('\n')) ** 2))), borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
-=======
-    expStat = Label(statsFrame, text= currXP , borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
->>>>>>> c9d720d39ab0c30e485a67ab5a6379f39d593b8f
     expStat.grid(row=3, column=4, ipadx=3, ipady=3, sticky=W)
 
     displayLvl = Label(statsFrame, text="Player Level: ", borderwidth=1, fg='#1A5A14', bg='#808080')
