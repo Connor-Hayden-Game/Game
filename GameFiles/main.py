@@ -5,7 +5,7 @@ import tkinter.messagebox
 import tkinter.scrolledtext
 from win_settings import *
 import heroCreation as hc
-import heroUpdate as hu
+import interfaceHeroUpdate as hu
 import os
 
 # creates canvas
@@ -251,6 +251,13 @@ def play_now():
     text2Print.insert(INSERT, PROMPT + "\n")
     text2Print.insert(INSERT, "------------------------------------------------------------------\n")
     
+    
+
+
+
+
+
+
     # LIVE STATS
     file = open('interfaceSave.txt','r+')
     lines = file.readlines()
@@ -351,6 +358,67 @@ def play_now():
         floorStat = Label(statsFrame, text=lines[12].rstrip('\n'), borderwidth=1, fg='#1A5A14', bg='#808080', relief=SUNKEN)
         floorStat.grid(row=4, column=4, ipadx=3, ipady=3, sticky=W)
 
+
+    # TEMP HERO
+
+    class Hero(object):
+        f = open('interfaceSave.txt','r').read().splitlines()
+        name                = f[0]
+        health              = int(f[1])
+        melee               = int(f[2])
+        ranged              = int(f[3])
+        magic               = int(f[4])
+        points              = int(f[5])
+        bank                = int(f[6])
+        armor               = hu.stringToItem(f[7])
+        weapon              = hu.stringToItem(f[8])
+        amulet              = hu.stringToItem(f[9])
+        experience          = float(f[10])
+        player_level        = int(f[11])
+        floor_level         = int(f[12])
+        player_class        = hu.playerClass(weapon)
+
+    mob_list           = ["Brute", "Archer", " Warlock"]
+    elements_list      = ["fire" *100, "water" * 100, "earth" * 100, "eternal"]
+
+    hero_obj = Hero()
+
+
+
+
+
+
+
+
+
+###################################################################################################################################################
+#                                                                  Important message for later:                                                   #
+#                                    Everything inside enterTextClick isn't working because it needs to be above live stats in code               #
+#                                                      Not exactly sure how to make that work yet tho                                             #
+###################################################################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     # IF ENTER BUTTON IS CLICKED
     def enterTextClick(event=None):
         # retrieve what the user typed
@@ -381,8 +449,8 @@ def play_now():
             # combat.combatSequence(hero_obj, mob4)
             text2Print.insert(INSERT, "fighting mobs \n")
         elif CHOICE == "2":
-            # hu.add_points(hero_obj)
-            text2Print.insert(INSERT, "adding points \n")
+            # hu.add_points(hero_obj, text2Print, userEntry)
+            # text2Print.insert(INSERT, "adding points \n")
         elif CHOICE == "3":
             # me.merchant(hero_obj)
             text2Print.insert(INSERT, "visiting merchant \n")
